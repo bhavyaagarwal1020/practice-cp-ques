@@ -33,13 +33,14 @@ for(int i=0;i<n;i++)
     if(cpw[j]<cpw[j+1])
      {
       swap(cpw[j],cpw[j+1]);
+      swap(wt[i],wt[i+1]);
      }
    }
  }
 int i=0;double cost=0;
 while(knapwt>0 && i<n)
 {
-  if(knapwt>=profit[i])
+  if(knapwt>=wt[i])
   {
    cost=cost+((double)wt[i]*(double)cpw[i]);
    knapwt=knapwt-wt[i];
