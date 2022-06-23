@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+ int knapwt,n;
+ cout<<"enter number of weights="<<endl;
+ cin>>n>>knapwt;
+ vector<int>wt(n);
+ vector<int>profit(n);
+ for(int i=0;i<n;i++)
+ {
+  cout<<"enter wt "<<i<<endl;
+  cin>>wt[i];
+ }
+
+ for(int i=0;i<n;i++)
+ {
+  cout<<"enter profit "<<i<<endl;
+  cin>>profit[i];
+ }
+
+ vector<double>cpw(n);
+ for(int i=0;i<n;i++)
+ {
+   cpw[i]=(double)profit[i]/(double)wt[i];
+   
+ }
+ 
+for(int i=0;i<n;i++)
+ {
+  for(int j=0;j<n;j++)
+  {
+    if(cpw[j]<cpw[j+1])
+     {
+      swap(cpw[j],cpw[j+1]);
+     }
+   }
+ }
+int i=0;double cost=0;
+while(knapwt>0 && i<n)
+{
+  if(knapwt>=profit[i])
+  {
+   cost=cost+((double)wt[i]*(double)cpw[i]);
+   knapwt=knapwt-wt[i];
+   i++;
+  }
+ if(knapwt<wt[i] && knapwt!=0)
+{
+  cost=cost+((double)knapwt*(double)cpw[i]);
+  knapwt=0;
+ }
+}
+cout<<"profit="<<cost<<endl;
+}
