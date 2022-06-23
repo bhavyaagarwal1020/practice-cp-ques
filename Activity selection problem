@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+ int n;
+ cout<<"enter no of activities="<<endl;
+ cin>>n;
+ vector<int>ac(n);
+ vector<int>s(n);
+ vector<int>f(n);
+ for(int i=0;i<n;i++)
+ {
+   cout<<"enter start time of activity "<<i<<" "<<endl;
+   cin>>s[i];
+   cout<<"enter finish time of activity "<<i<<" "<<endl;
+   cin>>f[i];
+   ac.push_back(i);
+ }
+ for(int i=0;i<n;i++)
+ {
+  for(int j=0;j<n;j++)
+  {
+    if(f[j]<f[j+1])
+     {
+      swap(f[j],f[j+1]);
+      swap(s[j],s[j+1]);
+      swap(ac[j],ac[j+1]);
+     }
+   }
+ }
+ vector<int>temp1(n);
+ vector<int>temp2(n);
+ vector<int>temp3(n);
+ 
+ temp1.push_back(s[0]);
+ temp2.push_back(f[0]);
+ temp3.push_back(ac[0]);
+ int a=f[0];
+ for(int i=1;i<n;i++)
+ {
+   if(s[i]>=a)
+   {
+    temp3.push_back(i);
+    temp1.push_back(s[i]);
+    temp2.push_back(f[i]);
+    a=f[i];
+   }
+   else
+   continue;
+ }
+   for(int i=0;i<temp3.size();i++)
+   {
+    cout<<"activity selected="<<temp3[i]<<" start time= "<<temp1[i]<<" finish time= "<<temp2[i]<<endl;
+   }
+}
